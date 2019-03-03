@@ -1,6 +1,7 @@
 //jshint esversion:6
 
 const express = require("express");
+require('dotenv').config();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
@@ -12,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://" + process.env.ATLAS_CREDS + "@" + process.env.ATLAS_SERVER + "/todolistDB", {useNewUrlParser: true});
 
 // Define schema
 const itemsSchema = {
