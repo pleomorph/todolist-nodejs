@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+// Connect to remote Mongo Atlas database
 mongoose.connect("mongodb+srv://" + process.env.ATLAS_CREDS + "@" + process.env.ATLAS_SERVER + "/todolistDB", {useNewUrlParser: true});
 
 // Define schema
@@ -163,6 +164,6 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(process.env.PORT || 3000, function() {
+  console.log("Server is running.");
 });
